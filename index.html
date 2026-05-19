@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Romeo Runner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="./assets/index-whhRPDK4.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DEJWmNHD.css">
+  </head>
+  <body data-state="menu">
+    <div id="game-shell">
+      <canvas id="game" aria-label="Romeo Runner"></canvas>
+
+      <div id="hud">
+        <div id="hud-score">000000</div>
+        <div class="hud-stats">
+          <div id="hud-level">CITY</div>
+          <div id="hud-combo">FOCUS X1.0</div>
+          <div id="hud-shield">NO POWERUP</div>
+        </div>
+        <div id="hud-hint">JUMP: SPACE / SLIDE: DOWN</div>
+      </div>
+
+      <div id="overlay">
+        <div id="screen-menu" class="screen active">
+          <div class="menu-frame">
+            <div class="menu-eyebrow">DISTRICT 07</div>
+            <h1>ROMEO<br>RUNNER</h1>
+            <div class="menu-stats">
+              <div>
+                <span class="menu-label">Personal Best</span>
+                <span id="menu-best">0</span>
+              </div>
+            </div>
+            <div class="menu-actions">
+              <button data-action="start-story">Begin Escape</button>
+              <button data-action="open-levels">Select Zone</button>
+              <button data-action="open-settings">Configurations</button>
+              <button data-action="open-profile">Runner Profile</button>
+            </div>
+            <div class="leaderboard-table" id="leaderboard-list-menu"></div>
+          </div>
+        </div>
+
+        <div id="screen-levels" class="screen">
+          <div class="menu-frame">
+            <h2>ZONE SELECT</h2>
+            <div id="level-list" class="choice-grid"></div>
+            <button data-action="back-to-menu">Return</button>
+          </div>
+        </div>
+
+        <div id="screen-settings" class="screen">
+          <div class="menu-frame">
+            <h2>CONFIG</h2>
+            <div class="settings-grid">
+              <button data-action="toggle-audio">Audio: <span id="settings-audio">ON</span></button>
+              <button data-action="toggle-particles">VFX: <span id="settings-particles">ON</span></button>
+              <button data-action="toggle-shake">Shake: <span id="settings-shake">ON</span></button>
+              <button data-action="toggle-contrast">Mode: <span id="settings-contrast">NORMAL</span></button>
+              <button data-action="toggle-character">Character: <span id="settings-character">ROMEO</span></button>
+            </div>
+            <button data-action="back-to-menu">Confirm</button>
+          </div>
+        </div>
+
+        <div id="screen-gameover" class="screen">
+          <div class="menu-frame">
+            <div class="menu-eyebrow">RUN TERMINATED</div>
+            <h2 id="gameover-title">DISTANCE: 0M</h2>
+            <div class="menu-actions">
+              <button data-action="retry">Restart</button>
+              <button data-action="back-to-menu">Return to Hub</button>
+            </div>
+            <div class="leaderboard-table" id="leaderboard-list"></div>
+          </div>
+        </div>
+
+        <div id="screen-profile" class="screen">
+          <div class="menu-frame">
+            <h2>RUNNER ID</h2>
+            <div class="profile-grid">
+              <div>
+                <label>Callsign</label>
+                <input type="text" id="profile-name" placeholder="Anonymous" maxlength="20">
+              </div>
+              <div>
+                <label>Auth Email (For Leaderboard)</label>
+                <input type="email" id="profile-email" placeholder="runner@dist07.io">
+              </div>
+            </div>
+            <div id="profile-status" class="menu-subtitle">Status: Online</div>
+            <button data-action="save-profile">Save Identity</button>
+            <button data-action="back-to-menu">Return</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="loading-overlay" class="active">
+      <img src="./loading.gif" alt="Loading" />
+      <div class="loading-bar"><span id="loading-bar-fill"></span></div>
+      <span id="loading-percent">0%</span>
+      <button id="loading-bypass" style="display:none; margin-top: 40px; border: 1px solid #fff; padding: 10px 20px; color: #fff; background: transparent; cursor: pointer;">STUCK? BYPASS LOADING</button>
+    </div>
+
+    <script>
+      document.getElementById('loading-bypass').onclick = function() {
+        const overlay = document.getElementById('loading-overlay');
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+          overlay.classList.remove('active');
+          overlay.style.visibility = 'hidden';
+        }, 400);
+      };
+    </script>
+  </body>
+</html>
